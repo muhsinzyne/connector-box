@@ -1,0 +1,27 @@
+<div class="{{ menu | mainMenuClass }}" *ngFor="let menu of mainMenuList" data-kt-menu-trigger="*ngIf(menu | mainMenuHasChildren) ? 'click': '' " data-kt-menu-placement="*ngIf(menu | mainMenuHasChildren) ? 'bottom-start': '' ">
+    <a *ngIf="!(menu | mainMenuHasChildren)" class="menu-link py-3" routerLinkActive="{{ menu.active }}" routerLink="{{ menu.to }}"><span class="menu-title" translate="{{ menu.label }}"></span
+  ></a>
+
+</div>
+
+
+<!-- Apps -->
+<div class="{{ menu | mainMenuClass }}" *ngFor="let menu of mainMenuList" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start">
+    <span class="menu-link py-3" [ngClass]="calculateMenuItemCssClass(''+ menu.to + '')" *ngIf="(menu | mainMenuHasChildren)">
+    <span class="menu-title">{{menu.label}}</span>
+    <span class="menu-arrow d-lg-none"></span>
+    </span>
+
+
+    <div *ngIf="(menu | mainMenuHasChildren)" class="
+      menu-sub
+      menu-sub-lg-down-accordion
+      menu-sub-lg-dropdown
+      menu-rounded-0
+      py-lg-4
+      w-lg-225px
+    " data-kt-menu-dismiss="true">
+        <app-header-submenu [menu]="child" *ngFor="let child of menu.children"> </app-header-submenu>
+    </div>
+
+</div>

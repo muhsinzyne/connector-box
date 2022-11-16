@@ -1,0 +1,27 @@
+<div *ngIf="!(menu | mainMenuHasChildren)">
+    <a class="menu-link py-3" routerLinkActive="active" routerLink="{{menu.to}}"><span class="menu-bullet"
+    ><span class="bullet bullet-dot"></span></span
+    ><span class="menu-title">{{menu.label}}</span></a
+    >
+</div>
+
+<div *ngIf="(menu | mainMenuHasChildren)" class="menu-item menu-lg-down-accordion me-lg-1" data-kt-menu-trigger="{default:'click', lg: 'hover'}" data-kt-menu-placement="right-start">
+    <span class="menu-link py-3" [ngClass]="calculateMenuItemCssClass('' + menu.to)"><span class="menu-icon">
+    <span
+      class="svg-icon svg-icon-2"
+      [inlineSVG]="'./assets/media/icons/duotune/general/gen022.svg'"
+    ></span></span><span class="menu-title" data-link="/apps/chat">{{ menu.label }}</span
+  ><span class="menu-arrow"></span
+></span>
+    <div *ngIf="menu | mainMenuHasChildren" class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0 py-lg-4 w-lg-225px" data-kt-menu-dismiss="true">
+        <app-header-submenu [menu]="child" *ngFor="let child of menu.children">
+        </app-header-submenu>
+
+        <!-- <div class="menu-item me-lg-1" *ngFor="let child2 of child.children">
+          <a class="menu-link py-3" routerLinkActive="active" routerLink="{{child2.to}}"><span class="menu-bullet"
+><span class="bullet bullet-dot"></span></span
+><span class="menu-title">{{child2.label}}</span></a
+>
+</div> -->
+</div>
+</div>
